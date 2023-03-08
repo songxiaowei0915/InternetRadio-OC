@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "NetworkManager.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NetworkManager sharedInstance] getRecommendedStations:^(NSMutableArray* jsonArray){
+        NSLog(@"The content of arry is%@",jsonArray);
+    }];
 }
 
 
