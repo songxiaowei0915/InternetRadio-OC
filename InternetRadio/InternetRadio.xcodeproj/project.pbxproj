@@ -15,6 +15,8 @@
 		438F73DD29B7DD7C00ADD0A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438F73DB29B7DD7C00ADD0A8 /* LaunchScreen.storyboard */; };
 		438F73E029B7DD7C00ADD0A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73DF29B7DD7C00ADD0A8 /* main.m */; };
 		43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C58F29B87B87008DEF78 /* NetworkManager.m */; };
+		43F8C59329B8A099008DEF78 /* RadioStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C59229B8A099008DEF78 /* RadioStation.m */; };
+		43F8C59829B8A891008DEF78 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C59729B8A891008DEF78 /* DataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,10 @@
 		438F73DF29B7DD7C00ADD0A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43F8C58E29B87B87008DEF78 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		43F8C58F29B87B87008DEF78 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		43F8C59129B8A099008DEF78 /* RadioStation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioStation.h; sourceTree = "<group>"; };
+		43F8C59229B8A099008DEF78 /* RadioStation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStation.m; sourceTree = "<group>"; };
+		43F8C59629B8A891008DEF78 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		43F8C59729B8A891008DEF78 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +76,8 @@
 				438F73D129B7DD7B00ADD0A8 /* SceneDelegate.m */,
 				438F73D329B7DD7B00ADD0A8 /* ViewController.h */,
 				438F73D429B7DD7B00ADD0A8 /* ViewController.m */,
-				43F8C58E29B87B87008DEF78 /* NetworkManager.h */,
-				43F8C58F29B87B87008DEF78 /* NetworkManager.m */,
+				43F8C59529B8A82A008DEF78 /* Data */,
+				43F8C59429B8A80E008DEF78 /* Net */,
 				438F73D629B7DD7B00ADD0A8 /* Main.storyboard */,
 				438F73D929B7DD7C00ADD0A8 /* Assets.xcassets */,
 				438F73DB29B7DD7C00ADD0A8 /* LaunchScreen.storyboard */,
@@ -79,6 +85,26 @@
 				438F73DF29B7DD7C00ADD0A8 /* main.m */,
 			);
 			path = InternetRadio;
+			sourceTree = "<group>";
+		};
+		43F8C59429B8A80E008DEF78 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				43F8C58E29B87B87008DEF78 /* NetworkManager.h */,
+				43F8C58F29B87B87008DEF78 /* NetworkManager.m */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+		43F8C59529B8A82A008DEF78 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				43F8C59129B8A099008DEF78 /* RadioStation.h */,
+				43F8C59229B8A099008DEF78 /* RadioStation.m */,
+				43F8C59629B8A891008DEF78 /* DataManager.h */,
+				43F8C59729B8A891008DEF78 /* DataManager.m */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,8 +179,10 @@
 			files = (
 				438F73D529B7DD7B00ADD0A8 /* ViewController.m in Sources */,
 				438F73CF29B7DD7B00ADD0A8 /* AppDelegate.m in Sources */,
+				43F8C59829B8A891008DEF78 /* DataManager.m in Sources */,
 				438F73E029B7DD7C00ADD0A8 /* main.m in Sources */,
 				43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */,
+				43F8C59329B8A099008DEF78 /* RadioStation.m in Sources */,
 				438F73D229B7DD7B00ADD0A8 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

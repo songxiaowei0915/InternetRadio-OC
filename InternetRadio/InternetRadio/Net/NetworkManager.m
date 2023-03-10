@@ -20,26 +20,29 @@ const NSString *PARAMS = @"?filter=s:bit32*&render=json&formats=mp3,aac,ogg,flas
     return _instance;
 }
 
-- (void) loadDataWithURL:(NSString *)url completionHandler:(postRequestBlock)callback {
+- (void) loadDataWithURL:(NSString *)url completionHandler:(getRequestBlock)callback {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
     [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSMutableArray *jsonArray = (NSMutableArray*)[NSJSONSerialization JSONObjectWithData:data options:NSASCIIStringEncoding error:&error];
+            NSDictionary *dict = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSASCIIStringEncoding error:&error];
+                NSMutableArray *jsonArray = dict[@"body"];
+                if (jsonArray) {
+                    callback(jsonArray);
+                }
                 
-                callback(jsonArray);
 
         }] resume];
 }
 
-- (void) getRecommendedStations:(postRequestBlock)callback {
+- (void) getRecommendedStations:(getRequestBlock)callback {
     NSString *url = [[NSString alloc] initWithFormat:@"http://opml.radiotime.com/Browse.ashx%@&c=trending", PARAMS];
     [self loadDataWithURL:url completionHandler:callback];
 }
 
-- (void) getStationsForSearch:(NSString *)searchTerms completionHandler:(postRequestBlock)callback {
+- (void) getStationsForSearch:(NSString *)searchTerms completionHandler:(getRequestBlock)callback {
     NSString *searchTermsEncoded = [searchTerms stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     NSString *url = [[NSString alloc] initWithFormat:@"http://opml.radiotime.com/Search.ashx%@&render=json&query=%@", PARAMS,searchTermsEncoded];
     [self loadDataWithURL:url completionHandler:callback];
