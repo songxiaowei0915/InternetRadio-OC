@@ -6,7 +6,6 @@
 //
 
 #import "ViewController.h"
-#import "DataManager.h"
 
 @interface ViewController ()
 
@@ -17,9 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[DataManager sharedInstance] getRecommendedStations:^(NSMutableArray* jsonArray){
-        
-    }];
+
 }
 
 

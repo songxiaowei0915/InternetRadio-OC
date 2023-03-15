@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AVKit/AVKit.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setBackgroundPlayMusic];
     return YES;
 }
 
@@ -34,6 +36,13 @@
     // Called when the user discards a scene session.
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+}
+
+-(void)setBackgroundPlayMusic
+{
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
 }
 
 

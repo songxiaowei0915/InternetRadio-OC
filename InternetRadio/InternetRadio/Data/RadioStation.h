@@ -11,12 +11,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RadioStation : NSObject
 
+@property (nonatomic, readonly) NSString *stationuuid;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *url;
-@property (nonatomic, readonly) NSString *image;
+@property (nonatomic, readonly) NSString *imageUrl;
+@property (nonatomic, readonly) NSString *tags;
+@property (nonatomic, readonly) NSString *country;
+@property (nonatomic, readonly) NSString *countrycode;
+@property (nonatomic, readonly) NSString *language;
+@property (nonatomic, readonly) NSString *state;
+@property (nonatomic, readonly) NSInteger votes;
 @property (nonatomic, readonly) NSString *desc;
 
-- (id) initWithName: (NSString *)name withURL:(NSString *)url withImage: (NSString *)image  withDesc: (NSString *)desc;
+- (instancetype) initWithUUID:(NSString *)uuid withName:(NSString *)name withUrl:(NSString *)url withImageUrl:(NSString *)imageUrl withTags:(NSString *)tags withCountry:(NSString *)country withCountryCode:(NSString *)countrycode withLanguage:(NSString *)language withState:(NSString *)state withVotes:(NSInteger)votes;
+
+@end
+
+@protocol RadioStationParserProtocol <NSObject>
+
+- (void)parseRadioStations:(NSArray *)jsonArray withSuccess:(void (^)(NSMutableArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
+
+@end
+
+@protocol RadioStationFetcherProtocol <NSObject>
+
+- (void)fetchRadioStationsWithSuccess:(void (^)(NSMutableArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
 
 @end
 

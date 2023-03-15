@@ -9,16 +9,24 @@
 
 @implementation RadioStation 
 
-- (id) initWithName:(NSString *)name withURL:(NSString *)url withImage:(NSString *)image withDesc:(NSString *)desc {
+- (instancetype) initWithUUID:(NSString *)uuid withName:(NSString *)name withUrl:(NSString *)url withImageUrl:(NSString *)imageUrl withTags:(NSString *)tags withCountry:(NSString *)country withCountryCode:(NSString *)countrycode withLanguage:(NSString *)language withState:(NSString *)state withVotes:(NSInteger)votes {
     self = [super init];
+    
     if (self) {
+        _stationuuid = uuid;
         _name = name;
         _url = url;
-        _image = image;
-        _desc = desc;
+        _imageUrl = imageUrl;
+        _tags = tags;
+        _country = country;
+        _countrycode = countrycode;
+        _language = language;
+        _state = state;
+        _votes = votes;
+        _desc = @"";
     }
     
-    return  self;
+    return self;
 }
 
 @end

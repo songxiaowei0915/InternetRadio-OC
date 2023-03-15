@@ -10,9 +10,9 @@
 @implementation NetworkManager
 
 static NetworkManager *_instance = nil;
-const NSString *PARAMS = @"?filter=s:bit32*&render=json&formats=mp3,aac,ogg,flash,hls";
+const NSString *baseURL = @"http://nl1.api.radio-browser.info/json/";
 
-+ (id) sharedInstance {
++ (instancetype) sharedInstance {
     if (!_instance) {
         _instance = [[self alloc]init];
     }
@@ -20,32 +20,40 @@ const NSString *PARAMS = @"?filter=s:bit32*&render=json&formats=mp3,aac,ogg,flas
     return _instance;
 }
 
-- (void) loadDataWithURL:(NSString *)url completionHandler:(getRequestBlock)callback {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"GET"];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-
-    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSDictionary *dict = (NSDictionary*)[NSJSONSerialization JSONObjectWithData:data options:NSASCIIStringEncoding error:&error];
-                NSMutableArray *jsonArray = dict[@"body"];
-                if (jsonArray) {
-                    callback(jsonArray);
-                }
-                
-
+- (void) loadDataWithURL:(NSString *)api completionHandler:(void (^)(NSArray* jsonArray))callback {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseURL, api]];
+    if (!url) {
+        NSLog(@"url error!");
+        return;
+    }
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"%@",error);
+                return;
+            }
+            
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            if (!httpResponse || httpResponse.statusCode != 200) {
+                NSLog(@"Response error!");
+                return;
+            }
+            
+            NSArray *jsonArray = (NSArray*)[NSJSONSerialization JSONObjectWithData:data options:NSASCIIStringEncoding error:&error];
+            if (jsonArray) {
+                callback(jsonArray);
+            }
         }] resume];
 }
 
-- (void) getRecommendedStations:(getRequestBlock)callback {
-    NSString *url = [[NSString alloc] initWithFormat:@"http://opml.radiotime.com/Browse.ashx%@&c=trending", PARAMS];
-    [self loadDataWithURL:url completionHandler:callback];
+- (void) getStationList: (void (^)(NSArray* jsonArray))callback {
+    NSString *api = @"stations";
+    [self loadDataWithURL:api completionHandler:callback];
 }
 
-- (void) getStationsForSearch:(NSString *)searchTerms completionHandler:(getRequestBlock)callback {
-    NSString *searchTermsEncoded = [searchTerms stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    NSString *url = [[NSString alloc] initWithFormat:@"http://opml.radiotime.com/Search.ashx%@&render=json&query=%@", PARAMS,searchTermsEncoded];
-    [self loadDataWithURL:url completionHandler:callback];
+- (void) getStationListByCountryCode:(NSString *)contrycode completionHandler:(void (^)(NSArray * _Nonnull))callback {
+    NSString *api = @"stations/bycountrycodeexact/";
+    [api stringByAppendingString:contrycode];
+    [self loadDataWithURL:api completionHandler:callback];
 }
 
 @end

@@ -9,16 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NetworkManager : NSObject {
-    
-}
+@interface NetworkManager : NSObject
 
-typedef void(^getRequestBlock)(NSMutableArray* jsonArray);
-
-+ (id) sharedInstance;
-- (void) loadDataWithURL: (NSString *)url completionHandler:(getRequestBlock)callback;
-- (void) getRecommendedStations:(getRequestBlock)callback;
-- (void) getStationsForSearch:(NSString *) searchTerms completionHandler:(getRequestBlock)callback;
++ (instancetype) sharedInstance;
+- (void) loadDataWithURL: (NSString *)api completionHandler:(void (^)(NSArray* jsonArray))callback;
+- (void) getStationList: (void (^)(NSArray* jsonArray))callback;
+- (void) getStationListByCountryCode:(NSString *)contrycode completionHandler:(void (^)(NSArray* jsonArray))callback;
 
 @end
 
