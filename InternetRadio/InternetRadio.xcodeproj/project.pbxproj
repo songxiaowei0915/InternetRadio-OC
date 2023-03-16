@@ -22,6 +22,8 @@
 		43E3A6C829BDC8B70019C4C5 /* StationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6C729BDC8B70019C4C5 /* StationTableViewCell.m */; };
 		43E3A6CB29C01F170019C4C5 /* RadioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6CA29C01F170019C4C5 /* RadioPlayer.m */; };
 		43E3A6D429C1B26D0019C4C5 /* MessageDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D329C1B26D0019C4C5 /* MessageDefine.m */; };
+		43E3A6D729C1CAC90019C4C5 /* AnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D629C1CAC90019C4C5 /* AnimatedView.m */; };
+		43E3A6DA29C304570019C4C5 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D929C304570019C4C5 /* UIImage+Color.m */; };
 		43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C58F29B87B87008DEF78 /* NetworkManager.m */; };
 		43F8C59329B8A099008DEF78 /* RadioStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C59229B8A099008DEF78 /* RadioStation.m */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,10 @@
 		43E3A6CA29C01F170019C4C5 /* RadioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioPlayer.m; sourceTree = "<group>"; };
 		43E3A6D229C1B26D0019C4C5 /* MessageDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
 		43E3A6D329C1B26D0019C4C5 /* MessageDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDefine.m; sourceTree = "<group>"; };
+		43E3A6D529C1CAC90019C4C5 /* AnimatedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimatedView.h; sourceTree = "<group>"; };
+		43E3A6D629C1CAC90019C4C5 /* AnimatedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatedView.m; sourceTree = "<group>"; };
+		43E3A6D829C304570019C4C5 /* UIImage+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		43E3A6D929C304570019C4C5 /* UIImage+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		43F8C58E29B87B87008DEF78 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		43F8C58F29B87B87008DEF78 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		43F8C59129B8A099008DEF78 /* RadioStation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioStation.h; sourceTree = "<group>"; };
@@ -109,6 +115,9 @@
 				43E3A6CA29C01F170019C4C5 /* RadioPlayer.m */,
 				43E3A6D229C1B26D0019C4C5 /* MessageDefine.h */,
 				43E3A6D329C1B26D0019C4C5 /* MessageDefine.m */,
+				43E3A6D529C1CAC90019C4C5 /* AnimatedView.h */,
+				43E3A6D629C1CAC90019C4C5 /* AnimatedView.m */,
+				43E3A6DB29C3059B0019C4C5 /* Extensions */,
 				43F8C59529B8A82A008DEF78 /* Data */,
 				43F8C59429B8A80E008DEF78 /* Net */,
 				438F73D629B7DD7B00ADD0A8 /* Main.storyboard */,
@@ -118,6 +127,15 @@
 				438F73DF29B7DD7C00ADD0A8 /* main.m */,
 			);
 			path = InternetRadio;
+			sourceTree = "<group>";
+		};
+		43E3A6DB29C3059B0019C4C5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				43E3A6D829C304570019C4C5 /* UIImage+Color.h */,
+				43E3A6D929C304570019C4C5 /* UIImage+Color.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		43F8C59429B8A80E008DEF78 /* Net */ = {
@@ -212,10 +230,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E3A6D729C1CAC90019C4C5 /* AnimatedView.m in Sources */,
 				438F73D529B7DD7B00ADD0A8 /* ViewController.m in Sources */,
 				438F73CF29B7DD7B00ADD0A8 /* AppDelegate.m in Sources */,
 				43E3A6B329BDA3EB0019C4C5 /* RadioStationFetcher.m in Sources */,
 				438F73E029B7DD7C00ADD0A8 /* main.m in Sources */,
+				43E3A6DA29C304570019C4C5 /* UIImage+Color.m in Sources */,
 				43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */,
 				43E3A6BC29BDAD940019C4C5 /* RadioStationDisplay.m in Sources */,
 				43E3A6C829BDC8B70019C4C5 /* StationTableViewCell.m in Sources */,

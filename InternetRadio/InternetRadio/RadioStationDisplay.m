@@ -21,7 +21,7 @@
         } else {
             _imageUrl = nil;
         }
-        _desc = radioStation.desc;
+        _desc = radioStation.tags;
     }
         
     return self;
@@ -62,12 +62,12 @@
 //        callback(image);
 //        return;
 //    }
-//    
+//
 //    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
 //    if (!documentsURL) {
 //        return;
 //    }
-//    
+//
 //    NSURL *fileURL = [documentsURL URLByAppendingPathComponent:[self.stationuuid stringByAppendingString:@".png"]];
 //    NSString *filePath = fileURL.path;
 //    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -77,7 +77,7 @@
 //            return;
 //        });
 //    }
-//    
+//
 //    [[[NSURLSession sharedSession] downloadTaskWithURL:self.imageUrl completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 //        if (location && !error) {
 //            @try {

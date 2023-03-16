@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, RadioPalyerState) {
 };
 
 @protocol RadioPlayerDelegate <NSObject>
-
+- (void) readipPlayerStateChange: (RadioPalyerState) state;
 @end
 
 @interface RadioPlayer : NSObject {
@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, RadioPalyerState) {
 
 @property (nonatomic, readonly) RadioPalyerState state;
 @property (nonatomic, readonly) RadioPalyerState interruptStatus;
+@property (weak) id<RadioPlayerDelegate> delegate;
 
 - (void) playURL: (NSURL *)streamUrl withName:(NSString *)name withImage:(UIImage *) showImage;
 - (void) play;

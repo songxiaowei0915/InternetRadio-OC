@@ -23,7 +23,6 @@
         _language = language;
         _state = state;
         _votes = votes;
-        _desc = @"";
     }
     
     return self;

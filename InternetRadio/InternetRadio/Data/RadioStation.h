@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *language;
 @property (nonatomic, readonly) NSString *state;
 @property (nonatomic, readonly) NSInteger votes;
-@property (nonatomic, readonly) NSString *desc;
 
 - (instancetype) initWithUUID:(NSString *)uuid withName:(NSString *)name withUrl:(NSString *)url withImageUrl:(NSString *)imageUrl withTags:(NSString *)tags withCountry:(NSString *)country withCountryCode:(NSString *)countrycode withLanguage:(NSString *)language withState:(NSString *)state withVotes:(NSInteger)votes;
 

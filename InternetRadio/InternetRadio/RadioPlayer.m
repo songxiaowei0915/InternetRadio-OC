@@ -50,6 +50,7 @@ static RadioPlayer *_instance = nil;
             }
        }
     }];
+    
     [self setupRemoteCommandCenter];
     
     return self;
@@ -57,15 +58,17 @@ static RadioPlayer *_instance = nil;
 
 - (void) stop {
     if (avPlayer) {
-        [self removeObserver];
+        [self removeTimeObserver];
+        [self removePlayerStatusObserver];
+        
         [avPlayer pause];
         [avPlayer replaceCurrentItemWithPlayerItem:nil];
         [avPlayer setRate:0];
         avPlayer = nil;
+        
+        [self setState:stopped];
+        NSLog(@"stopped");
     }
-    [self setState:stopped];
-    
-    NSLog(@"stopped");
 }
 
 - (void) pause {
@@ -89,6 +92,9 @@ static RadioPlayer *_instance = nil;
 
 - (void) setState:(RadioPalyerState)state {
     _state = state;
+    if ([self.delegate respondsToSelector:@selector(readipPlayerStateChange:)]) {
+        [self.delegate readipPlayerStateChange:_state];
+    }
     [self postStateMessage];
 }
 
@@ -135,7 +141,8 @@ static RadioPlayer *_instance = nil;
     [self setState:buffering];
     
     [avPlayer play];
-    [self addPlayerObserver];
+    [self addPlayerTimeObserver];
+    [self addPlayerStatusObserver];
     
     lastName = name;
     lastStreamUrl = streamUrl;
@@ -146,21 +153,42 @@ static RadioPlayer *_instance = nil;
     [self setupNowPlayingWithName:name withImage:showImage];
 }
 
-- (void) addPlayerObserver {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    
+    AVPlayerItemStatus newStatus = avPlayer.currentItem.status;
+    
+    if (newStatus == AVPlayerItemStatusReadyToPlay) {
+        NSLog(@"readyToPlay");
+        [self setState:playing];
+    } else if (newStatus == AVPlayerItemStatusFailed) {
+        NSLog(@"Error: %@", avPlayer.currentItem.error);
+        [self stop];
+    }
+}
+
+- (void) addPlayerTimeObserver {
     RadioPlayer *strongSelf = self;
     periodicTimeObserverObserver = [avPlayer addPeriodicTimeObserverForInterval:CMTimeMake(10, 10) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         if (strongSelf->avPlayer.currentItem.isPlaybackLikelyToKeepUp) {
-            [strongSelf removeObserver];
+            [strongSelf removeTimeObserver];
             NSLog(@"Buffering completed");
         }
     }];
 }
 
-- (void) removeObserver {
+- (void) addPlayerStatusObserver {
+    [avPlayer.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+}
+
+- (void) removeTimeObserver {
     if (periodicTimeObserverObserver) {
         [avPlayer removeTimeObserver:periodicTimeObserverObserver];
         periodicTimeObserverObserver = nil;
     }
+}
+
+- (void) removePlayerStatusObserver {
+    [avPlayer.currentItem removeObserver:self forKeyPath:@"status"];
 }
 
 - (void) togglePlayPause {
@@ -194,6 +222,7 @@ static RadioPlayer *_instance = nil;
         case none:
             break;
     }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:message object:nil];
 }
 

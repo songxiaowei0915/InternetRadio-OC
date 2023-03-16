@@ -7,17 +7,23 @@
 
 #import <UIKit/UIKit.h>
 #import "RadioStationDisplay.h"
+#import "AnimatedView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StationTableViewCell : UITableViewCell
+@interface StationTableViewCell : UITableViewCell {
+   
+}
+
 @property (weak, nonatomic) IBOutlet UIImageView *homeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIView *statusView;
+@property (weak, nonatomic) IBOutlet AnimatedView *statusView;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 
+@property (nonatomic, assign) RadioStationDisplay *display;
 
-- (void) setDisplay: (RadioStationDisplay *)display;
+- (void) playAnim;
+- (void) stopAnim;
 
 @end
 

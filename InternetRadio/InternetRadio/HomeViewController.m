@@ -7,11 +7,10 @@
 
 #import "HomeViewController.h"
 #import "StationTableViewCell.h"
-#import "RadioPlayer.h"
 
 
 @interface HomeViewController ()
-
+@property (nonatomic, assign) NSIndexPath *selectIndexPath;
 @end
 
 @implementation HomeViewController
@@ -22,6 +21,7 @@
     
     if (self) {
         self.viewModel = [[ViewModel alloc] init];
+        [[RadioPlayer sharedInstance] setDelegate:self];
     }
     
     return self;
@@ -38,7 +38,6 @@
 - (void) getData {
     __weak HomeViewController *weakSelf = self;
     [self.viewModel getRadioStationsWithSuccess:^(NSArray<RadioStationDisplay *> * _Nonnull radioStations) {
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView reloadData];
         });
@@ -48,7 +47,7 @@
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    
+    NSLog(@"=====");
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -64,13 +63,17 @@
     return [self.viewModel numberOfSections];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    StationTableViewCell *tableCell = (StationTableViewCell *)cell;
+    RadioStationDisplay *display = [self.viewModel itemAtIndexPath:indexPath];
+    [tableCell setDisplay:display];
+    if (self.selectIndexPath == indexPath) {
+        [tableCell playAnim];
+    }
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     StationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StationTableViewCell"];
-    
-    if (cell) {
-        [cell setDisplay:[self.viewModel itemAtIndexPath:indexPath]];
-    }
-    
     return cell;
 }
 
@@ -80,14 +83,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    RadioStationDisplay *display = [self.viewModel itemAtIndexPath:indexPath];
-    [[RadioPlayer sharedInstance] playURL:display.url withName:display.name withImage:display.image];
-//    NSURL *url = [NSURL URLWithString:display.url];
-//    AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:url];
-//    AVPlayer *player = [[AVPlayer alloc] initWithPlayerItem:item];
-//    NSLog(@"%@", display.url);
-//    [player play];
     
+    StationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    RadioStationDisplay *display = cell.display;
+    [[RadioPlayer sharedInstance] playURL:display.url withName:display.name withImage:display.image];
+    self.selectIndexPath = indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    StationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell stopAnim];
+}
+
+- (void) readipPlayerStateChange:(RadioPalyerState)state {
+    if (!self.selectIndexPath) {
+        return;
+    }
+    StationTableViewCell *selectCell = [self.tableView cellForRowAtIndexPath:self.selectIndexPath];
+    switch (state) {
+        case playing:
+            if (selectCell) {
+                [selectCell playAnim];
+            }
+            break;
+        default:
+            if (selectCell) {
+                [selectCell stopAnim];
+            }
+            break;
+    }
 }
 
 @end

@@ -56,18 +56,17 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="L4A-9s-p1y">
-                                                                    <rect key="frame" x="0.0" y="20.333333333333332" width="124" height="39.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="20.333333333333332" width="139" height="39.666666666666671"/>
                                                                     <subviews>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRP-3X-qfP">
-                                                                            <rect key="frame" x="0.0" y="12.333333333333332" width="15" height="15"/>
-                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NowPlayingBars-2" translatesAutoresizingMaskIntoConstraints="NO" id="U8q-Be-7rr" userLabel="Status View" customClass="AnimatedView">
+                                                                            <rect key="frame" x="0.0" y="5.0000000000000036" width="30" height="29.999999999999996"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="15" id="E6t-Fx-7L2"/>
-                                                                                <constraint firstAttribute="height" constant="15" id="pxS-GK-mLC"/>
+                                                                                <constraint firstAttribute="height" constant="30" id="4Y9-wR-fEe"/>
+                                                                                <constraint firstAttribute="width" constant="30" id="6BD-Q0-VOB"/>
                                                                             </constraints>
-                                                                        </view>
+                                                                        </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags - Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLk-TX-pgt">
-                                                                            <rect key="frame" x="18" y="11.000000000000004" width="106" height="18"/>
+                                                                            <rect key="frame" x="33" y="11.000000000000004" width="106" height="18"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -90,7 +89,7 @@
                                             <outlet property="descLabel" destination="RLk-TX-pgt" id="lWk-YD-ZZz"/>
                                             <outlet property="homeImageView" destination="1q6-zM-uKD" id="pyE-CY-lU0"/>
                                             <outlet property="nameLabel" destination="3io-l9-orY" id="zQi-7M-SE8"/>
-                                            <outlet property="statusView" destination="FRP-3X-qfP" id="oPW-8j-4tW"/>
+                                            <outlet property="statusView" destination="U8q-Be-7rr" id="cL1-Cv-mHh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -128,6 +127,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NowPlayingBars-2" width="19.666666030883789" height="19"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

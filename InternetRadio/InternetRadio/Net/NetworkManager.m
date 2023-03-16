@@ -52,8 +52,7 @@ const NSString *baseURL = @"http://nl1.api.radio-browser.info/json/";
 
 - (void) getStationListByCountryCode:(NSString *)contrycode completionHandler:(void (^)(NSArray * _Nonnull))callback {
     NSString *api = @"stations/bycountrycodeexact/";
-    [api stringByAppendingString:contrycode];
-    [self loadDataWithURL:api completionHandler:callback];
+    [self loadDataWithURL:[[api stringByAppendingString:contrycode] lowercaseString] completionHandler:callback];
 }
 
 @end

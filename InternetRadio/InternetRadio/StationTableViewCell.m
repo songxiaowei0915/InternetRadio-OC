@@ -7,11 +7,13 @@
 
 #import "StationTableViewCell.h"
 
+
 @implementation StationTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.statusView setAnimationDuration:1];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,13 +22,16 @@
 }
 
 - (void) setDisplay:(RadioStationDisplay *)display {
+    _display = display;
+
     [self.nameLabel setText:display.name];
     [self.descLabel setText:display.desc];
-    [self.statusView setHidden:true];
+    [self.statusView setHidden:YES];
 
     if (display.image) {
         [self.homeImageView setImage:display.image];
     } else {
+        [self.homeImageView setImage:[display deaultImage]];
         __weak StationTableViewCell *cell = self;
         [display getImage:^(UIImage *image) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -34,6 +39,16 @@
             });
         }];
     }
+}
+
+- (void) playAnim {
+    [self.statusView setHidden:false];
+    [self.statusView startAnimating];
+}
+
+- (void) stopAnim {
+    [self.statusView setHidden:YES];
+    [self.statusView stopAnimating];
 }
 
 @end

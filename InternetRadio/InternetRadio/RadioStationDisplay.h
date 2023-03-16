@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype) initWithRaioStation: (nonnull RadioStation *)radioStation;
 - (void) getImage: (void (^)(UIImage *))callback;
+- (UIImage *) deaultImage;
 
 @end
 
