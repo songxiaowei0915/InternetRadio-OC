@@ -19,7 +19,7 @@
     return self;
 }
 
-- (void)fetchRadioStationsWithSuccess:(nonnull void (^)(NSMutableArray<RadioStation *> * _Nonnull))successCompletion error:(nonnull void (^)(NSError * _Nonnull))errorCompletion { 
+- (void)fetchRadioStationsWithSuccess:(nonnull void (^)(NSArray<RadioStation *> * _Nonnull))successCompletion error:(nonnull void (^)(NSError * _Nonnull))errorCompletion { 
     
     __weak RadioStationFetcher * weakSelf = self;
         
@@ -28,8 +28,7 @@
     };
         
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString * countryCode = [[NSLocale currentLocale] countryCode];
-        [[NetworkManager sharedInstance] getStationListByCountryCode:countryCode completionHandler:dataResponse];
+        [[NetworkManager sharedInstance] getStationList:dataResponse];
     });
 }
 

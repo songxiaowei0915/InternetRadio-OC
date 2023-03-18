@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) loadDataWithURL: (NSString *)api completionHandler:(void (^)(NSArray* jsonArray))callback;
 - (void) getStationList: (void (^)(NSArray* jsonArray))callback;
 - (void) getStationListByCountryCode:(NSString *)contrycode completionHandler:(void (^)(NSArray* jsonArray))callback;
+- (void) getStationListByName:(NSString *)name completionHandler:(void (^)(NSArray* jsonArray))callback;
 
 @end
 

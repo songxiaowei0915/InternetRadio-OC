@@ -28,14 +28,14 @@
 }
 
 - (void) getImage: (void (^)(UIImage *))callback {
-    if (self->_image) {
-        callback(self->_image);
+    if (self.image) {
+        callback(self.image);
         return;
     }
     
     if (!self.imageUrl) {
         self->_image = [self deaultImage];
-        callback(self->_image);
+        callback(self.image);
         return;
     }
     

@@ -28,13 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RadioStationParserProtocol <NSObject>
 
-- (void)parseRadioStations:(NSArray *)jsonArray withSuccess:(void (^)(NSMutableArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
+- (void)parseRadioStations:(NSArray *)jsonArray withSuccess:(void (^)(NSArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
 
 @end
 
 @protocol RadioStationFetcherProtocol <NSObject>
 
-- (void)fetchRadioStationsWithSuccess:(void (^)(NSMutableArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
+- (void)fetchRadioStationsWithSuccess:(void (^)(NSArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
 
 @end
 

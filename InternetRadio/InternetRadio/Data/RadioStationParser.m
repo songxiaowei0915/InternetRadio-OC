@@ -10,7 +10,7 @@
 @implementation RadioStationParser
 
 
-- (void)parseRadioStations:(nonnull NSArray *)jsonArray withSuccess:(nonnull void (^)(NSMutableArray<RadioStation *> * _Nonnull))successCompletion error:(nonnull void (^)(NSError * _Nonnull))errorCompletion {
+- (void)parseRadioStations:(nonnull NSArray *)jsonArray withSuccess:(nonnull void (^)(NSArray<RadioStation *> * _Nonnull))successCompletion error:(nonnull void (^)(NSError * _Nonnull))errorCompletion {
     
     NSMutableArray<RadioStation *>* stations = [[NSMutableArray alloc] init];
 

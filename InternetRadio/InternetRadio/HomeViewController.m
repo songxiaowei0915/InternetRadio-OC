@@ -9,8 +9,12 @@
 #import "StationTableViewCell.h"
 
 
-@interface HomeViewController ()
-@property (nonatomic, assign) NSIndexPath *selectIndexPath;
+@interface HomeViewController () {
+    NSString *currentStationuuid;
+    NSIndexPath *selectIndexPath;
+    NSTimer *delayPlay;
+}
+    
 @end
 
 @implementation HomeViewController
@@ -21,7 +25,6 @@
     
     if (self) {
         self.viewModel = [[ViewModel alloc] init];
-        [[RadioPlayer sharedInstance] setDelegate:self];
     }
     
     return self;
@@ -32,6 +35,9 @@
     // Do any additional setup after loading the view.
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
+    [self.searchBar setDelegate:self];
+    [[RadioPlayer sharedInstance] setDelegate:self];
+    
     [self getData];
 }
 
@@ -46,17 +52,34 @@
     }];
 }
 
+- (void) searchData:(NSString *) searchText {
+    __weak HomeViewController *weakSelf = self;
+    [self.viewModel searchRadioStations:searchText completionHandler:^(NSArray<RadioStationDisplay *> * _Nonnull radioStations) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView reloadData];
+        });
+    }];
+}
+
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"=====");
+    [searchBar setShowsCancelButton:false animated:true];
+    [self getData];
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
+    [self searchData:searchBar.text];
 }
 
-- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    
+- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:true animated:true];
+}
+
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+  
+}
+
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
@@ -67,8 +90,11 @@
     StationTableViewCell *tableCell = (StationTableViewCell *)cell;
     RadioStationDisplay *display = [self.viewModel itemAtIndexPath:indexPath];
     [tableCell setDisplay:display];
-    if (self.selectIndexPath == indexPath) {
+    if ([display.stationuuid isEqualToString:currentStationuuid]) {
+        selectIndexPath = indexPath;
         [tableCell playAnim];
+    } else {
+        [tableCell stopAnim];
     }
 }
 
@@ -87,7 +113,8 @@
     StationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     RadioStationDisplay *display = cell.display;
     [[RadioPlayer sharedInstance] playURL:display.url withName:display.name withImage:display.image];
-    self.selectIndexPath = indexPath;
+    currentStationuuid = display.stationuuid;
+    selectIndexPath = indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,22 +123,33 @@
 }
 
 - (void) readipPlayerStateChange:(RadioPalyerState)state {
-    if (!self.selectIndexPath) {
+    if (!selectIndexPath) {
         return;
     }
-    StationTableViewCell *selectCell = [self.tableView cellForRowAtIndexPath:self.selectIndexPath];
-    switch (state) {
-        case playing:
-            if (selectCell) {
-                [selectCell playAnim];
-            }
-            break;
-        default:
-            if (selectCell) {
-                [selectCell stopAnim];
-            }
-            break;
+    StationTableViewCell *selectCell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
+    RadioStationDisplay *display = selectCell.display;
+    if (![display.stationuuid isEqualToString:currentStationuuid]) {
+        return;
     }
+    if (delayPlay) {
+        [delayPlay invalidate];
+    }
+    delayPlay = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:NO block:^(NSTimer * _Nonnull timer) {
+        switch (state) {
+            case playing:
+                if (selectCell) {
+                    [selectCell playAnim];
+                }
+                break;
+            default:
+                if (selectCell) {
+                    [selectCell stopAnim];
+                }
+                break;
+        }
+    }];
+    
+    
 }
 
 @end

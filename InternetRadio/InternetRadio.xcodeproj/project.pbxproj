@@ -24,6 +24,8 @@
 		43E3A6D429C1B26D0019C4C5 /* MessageDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D329C1B26D0019C4C5 /* MessageDefine.m */; };
 		43E3A6D729C1CAC90019C4C5 /* AnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D629C1CAC90019C4C5 /* AnimatedView.m */; };
 		43E3A6DA29C304570019C4C5 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D929C304570019C4C5 /* UIImage+Color.m */; };
+		43E3A6DF29C319AC0019C4C5 /* MiniPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6DD29C319AC0019C4C5 /* MiniPlayerViewController.m */; };
+		43E3A6E229C31A430019C4C5 /* MiniPlayerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E3A6E129C31A430019C4C5 /* MiniPlayerViewController.storyboard */; };
 		43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C58F29B87B87008DEF78 /* NetworkManager.m */; };
 		43F8C59329B8A099008DEF78 /* RadioStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C59229B8A099008DEF78 /* RadioStation.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,9 @@
 		43E3A6D629C1CAC90019C4C5 /* AnimatedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatedView.m; sourceTree = "<group>"; };
 		43E3A6D829C304570019C4C5 /* UIImage+Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		43E3A6D929C304570019C4C5 /* UIImage+Color.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		43E3A6DC29C319AC0019C4C5 /* MiniPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniPlayerViewController.h; sourceTree = "<group>"; };
+		43E3A6DD29C319AC0019C4C5 /* MiniPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniPlayerViewController.m; sourceTree = "<group>"; };
+		43E3A6E129C31A430019C4C5 /* MiniPlayerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniPlayerViewController.storyboard; sourceTree = "<group>"; };
 		43F8C58E29B87B87008DEF78 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		43F8C58F29B87B87008DEF78 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		43F8C59129B8A099008DEF78 /* RadioStation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioStation.h; sourceTree = "<group>"; };
@@ -103,10 +108,10 @@
 				438F73D129B7DD7B00ADD0A8 /* SceneDelegate.m */,
 				438F73D329B7DD7B00ADD0A8 /* ViewController.h */,
 				438F73D429B7DD7B00ADD0A8 /* ViewController.m */,
-				43E3A6C329BDB6300019C4C5 /* HomeViewController.h */,
-				43E3A6C429BDB6300019C4C5 /* HomeViewController.m */,
 				43E3A6C629BDC8B70019C4C5 /* StationTableViewCell.h */,
 				43E3A6C729BDC8B70019C4C5 /* StationTableViewCell.m */,
+				43E3A6C329BDB6300019C4C5 /* HomeViewController.h */,
+				43E3A6C429BDB6300019C4C5 /* HomeViewController.m */,
 				43E3A6B729BDAD5E0019C4C5 /* ViewModel.h */,
 				43E3A6B829BDAD5E0019C4C5 /* ViewModel.m */,
 				43E3A6BA29BDAD940019C4C5 /* RadioStationDisplay.h */,
@@ -117,10 +122,13 @@
 				43E3A6D329C1B26D0019C4C5 /* MessageDefine.m */,
 				43E3A6D529C1CAC90019C4C5 /* AnimatedView.h */,
 				43E3A6D629C1CAC90019C4C5 /* AnimatedView.m */,
+				43E3A6DC29C319AC0019C4C5 /* MiniPlayerViewController.h */,
+				43E3A6DD29C319AC0019C4C5 /* MiniPlayerViewController.m */,
 				43E3A6DB29C3059B0019C4C5 /* Extensions */,
 				43F8C59529B8A82A008DEF78 /* Data */,
 				43F8C59429B8A80E008DEF78 /* Net */,
 				438F73D629B7DD7B00ADD0A8 /* Main.storyboard */,
+				43E3A6E129C31A430019C4C5 /* MiniPlayerViewController.storyboard */,
 				438F73D929B7DD7C00ADD0A8 /* Assets.xcassets */,
 				438F73DB29B7DD7C00ADD0A8 /* LaunchScreen.storyboard */,
 				438F73DE29B7DD7C00ADD0A8 /* Info.plist */,
@@ -220,6 +228,7 @@
 				438F73DD29B7DD7C00ADD0A8 /* LaunchScreen.storyboard in Resources */,
 				438F73DA29B7DD7C00ADD0A8 /* Assets.xcassets in Resources */,
 				438F73D829B7DD7B00ADD0A8 /* Main.storyboard in Resources */,
+				43E3A6E229C31A430019C4C5 /* MiniPlayerViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +254,7 @@
 				43E3A6B929BDAD5E0019C4C5 /* ViewModel.m in Sources */,
 				43F8C59329B8A099008DEF78 /* RadioStation.m in Sources */,
 				43E3A6D429C1B26D0019C4C5 /* MessageDefine.m in Sources */,
+				43E3A6DF29C319AC0019C4C5 /* MiniPlayerViewController.m in Sources */,
 				438F73D229B7DD7B00ADD0A8 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,7 +26,6 @@
 
     [self.nameLabel setText:display.name];
     [self.descLabel setText:display.desc];
-    [self.statusView setHidden:YES];
 
     if (display.image) {
         [self.homeImageView setImage:display.image];

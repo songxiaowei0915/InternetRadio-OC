@@ -55,4 +55,9 @@ const NSString *baseURL = @"http://nl1.api.radio-browser.info/json/";
     [self loadDataWithURL:[[api stringByAppendingString:contrycode] lowercaseString] completionHandler:callback];
 }
 
+- (void) getStationListByName:(NSString *)name completionHandler:(void (^)(NSArray * _Nonnull))callback {
+    NSString *api = @"stations/byname/";
+    [self loadDataWithURL:[[api stringByAppendingString:name] lowercaseString] completionHandler:callback];
+}
+
 @end
