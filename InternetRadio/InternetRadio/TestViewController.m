@@ -1,17 +1,17 @@
 //
-//  MiniPlayerViewController.m
+//  TestViewController.m
 //  InternetRadio
 //
 //  Created by 宋小伟 on 2023/3/19.
 //
 
-#import "MiniPlayerViewController.h"
+#import "TestViewController.h"
 
-@interface MiniPlayerViewController ()
+@interface TestViewController ()
 
 @end
 
-@implementation MiniPlayerViewController
+@implementation TestViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -13,8 +13,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewController : UIViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, RadioPlayerDelegate>
+
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *miniPlayerView;
 
 @property (nonatomic, strong) ViewModel * viewModel;
 

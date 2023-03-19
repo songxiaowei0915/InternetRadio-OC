@@ -1,5 +1,5 @@
 //
-//  MiniPlayerViewController.h
+//  TestViewController.h
 //  InternetRadio
 //
 //  Created by 宋小伟 on 2023/3/19.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MiniPlayerViewController : UIViewController
+@interface TestViewController : UIViewController
 
 @end
 

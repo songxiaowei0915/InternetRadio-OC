@@ -7,12 +7,16 @@
 
 #import "HomeViewController.h"
 #import "StationTableViewCell.h"
+#import "MiniPlayerViewController.h"
+#import "UIViewController+StoryboardInstantiable.h"
+#import "TestViewController.h"
 
 
 @interface HomeViewController () {
     NSString *currentStationuuid;
     NSIndexPath *selectIndexPath;
     NSTimer *delayPlay;
+    MiniPlayerViewController *miniPlayer;
 }
     
 @end
@@ -37,6 +41,7 @@
     [self.tableView setDelegate:self];
     [self.searchBar setDelegate:self];
     [[RadioPlayer sharedInstance] setDelegate:self];
+    [self setupMiniPlayerView];
     
     [self getData];
 }
@@ -52,7 +57,7 @@
     }];
 }
 
-- (void) searchData:(NSString *) searchText {
+- (void) searchData:(NSString *) searchText {    
     __weak HomeViewController *weakSelf = self;
     [self.viewModel searchRadioStations:searchText completionHandler:^(NSArray<RadioStationDisplay *> * _Nonnull radioStations) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -61,21 +66,14 @@
     }];
 }
 
-- (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar setShowsCancelButton:false animated:true];
-    [self getData];
-}
-
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self searchData:searchBar.text];
 }
 
-- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [searchBar setShowsCancelButton:true animated:true];
-}
-
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-  
+    if (searchText.length == 0) {
+        [self getData];
+    }
 }
 
 - (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -148,8 +146,21 @@
                 break;
         }
     }];
-    
-    
+}
+
+- (void) setupMiniPlayerView {
+    miniPlayer = [[MiniPlayerViewController alloc] init];
+    [miniPlayer.view setTranslatesAutoresizingMaskIntoConstraints:false];
+    [self.miniPlayerView addSubview:miniPlayer.view];
+
+    NSArray<NSLayoutConstraint *> * constraints = [[NSArray alloc] initWithObjects:
+                                                   [miniPlayer.view.topAnchor constraintEqualToAnchor:self.miniPlayerView.topAnchor],
+                                                   [miniPlayer.view.leadingAnchor constraintEqualToAnchor:self.miniPlayerView.leadingAnchor],
+                                                   [miniPlayer.view.trailingAnchor constraintEqualToAnchor:self.miniPlayerView.trailingAnchor],
+                                                   [miniPlayer.view.bottomAnchor constraintEqualToAnchor:self.miniPlayerView.bottomAnchor],
+                                                   nil];
+    [NSLayoutConstraint activateConstraints:constraints];
+    [self.miniPlayerView setHidden:YES];
 }
 
 @end

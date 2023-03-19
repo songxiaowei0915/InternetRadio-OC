@@ -6,7 +6,13 @@
 //
 
 #import "StationTableViewCell.h"
+#import <Foundation/Foundation.h>
 
+@interface StationTableViewCell () {
+    NSURLSessionDataTask * downTask;
+}
+
+@end
 
 @implementation StationTableViewCell
 
@@ -23,16 +29,18 @@
 
 - (void) setDisplay:(RadioStationDisplay *)display {
     _display = display;
-
     [self.nameLabel setText:display.name];
     [self.descLabel setText:display.desc];
-
-    if (display.image) {
-        [self.homeImageView setImage:display.image];
-    } else {
-        [self.homeImageView setImage:[display deaultImage]];
+    
+    if (downTask) {
+        [downTask cancel];
+        downTask = nil;
+    }
+    
+    [self.homeImageView setImage:display.deaultImage];
+    if (_display.imageUrl) {
         __weak StationTableViewCell *cell = self;
-        [display getImage:^(UIImage *image) {
+        [self getImage:^(UIImage *image) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [cell.homeImageView setImage:image];
             });
@@ -48,6 +56,13 @@
 - (void) stopAnim {
     [self.statusView setHidden:YES];
     [self.statusView stopAnimating];
+}
+
+- (void) getImage: (void (^)(UIImage *))callback {
+    downTask = [[NSURLSession sharedSession] dataTaskWithURL:_display.imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        callback([UIImage imageWithData:data]);
+    }];
+    [downTask resume];
 }
 
 @end

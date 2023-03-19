@@ -7,6 +7,12 @@
 
 #import "RadioStationDisplay.h"
 
+@interface RadioStationDisplay () {
+    NSURLSessionDataTask * downTask;
+}
+
+@end
+
 @implementation RadioStationDisplay
 
 - (instancetype) initWithRaioStation:(nonnull RadioStation *)radioStation {
@@ -22,6 +28,7 @@
             _imageUrl = nil;
         }
         _desc = radioStation.tags;
+        downTask = nil;
     }
         
     return self;
@@ -38,8 +45,8 @@
         callback(self.image);
         return;
     }
-    
-    [[[NSURLSession sharedSession] dataTaskWithURL:_imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+    downTask = [[NSURLSession sharedSession] dataTaskWithURL:_imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!data || error) {
             self->_image = [self deaultImage];
             callback(self->_image);
@@ -48,11 +55,19 @@
         
         self->_image = [UIImage imageWithData:data];
         callback(self->_image);
-    }] resume];
+    }];
+    [downTask resume];
 }
 
 - (UIImage *) deaultImage {
     return [UIImage imageNamed:@"radio-default"];
+}
+
+- (void) stopDownTask {
+    if (downTask) {
+        [downTask cancel];
+        downTask = nil;
+    }
 }
 
 //- (void) getImage:(void (^)(UIImage *))callback {
