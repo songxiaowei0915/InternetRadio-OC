@@ -37,19 +37,25 @@
         downTask = nil;
     }
     
-    [self.homeImageView setImage:display.deaultImage];
-    if (_display.imageUrl) {
-        __weak StationTableViewCell *cell = self;
-        [self getImage:^(UIImage *image) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [cell.homeImageView setImage:image];
-            });
-        }];
+    if (display.image) {
+        [self.homeImageView setImage:display.image];
+    } else {
+        [self.homeImageView setImage:display.deaultImage];
+        if (_display.imageUrl) {
+            __weak StationTableViewCell *cell = self;
+            [self getImage:^(UIImage *image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.homeImageView setImage:image];
+                });
+            }];
+        }
     }
+    
+    
 }
 
 - (void) playAnim {
-    [self.statusView setHidden:false];
+    [self.statusView setHidden:NO];
     [self.statusView startAnimating];
 }
 

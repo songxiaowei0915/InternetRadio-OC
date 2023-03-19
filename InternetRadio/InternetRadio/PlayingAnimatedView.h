@@ -1,5 +1,5 @@
 //
-//  AnimatedView.h
+//  PlayingAnimatedView.h
 //  InternetRadio
 //
 //  Created by 宋小伟 on 2023/3/15.
@@ -9,7 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AnimatedView : UIImageView
+@interface PlayingAnimatedView : UIImageView
+
+- (void) setImagesColor: (UIColor *)color;
+- (void) setupAnimationImages;
 
 @end
 

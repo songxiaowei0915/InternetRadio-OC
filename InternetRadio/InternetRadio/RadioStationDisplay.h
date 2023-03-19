@@ -21,9 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) UIImage *image;
 
 - (instancetype) initWithRaioStation: (nonnull RadioStation *)radioStation;
-- (void) getImage: (void (^)(UIImage *))callback;
+- (void) getImage: (nullable void (^)(UIImage *))callback;
 - (UIImage *) deaultImage;
-- (void) stopDownTask;
 
 @end
 

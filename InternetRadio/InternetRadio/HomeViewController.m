@@ -9,8 +9,6 @@
 #import "StationTableViewCell.h"
 #import "MiniPlayerViewController.h"
 #import "UIViewController+StoryboardInstantiable.h"
-#import "TestViewController.h"
-
 
 @interface HomeViewController () {
     NSString *currentStationuuid;
@@ -57,7 +55,7 @@
     }];
 }
 
-- (void) searchData:(NSString *) searchText {    
+- (void) searchData:(NSString *) searchText {
     __weak HomeViewController *weakSelf = self;
     [self.viewModel searchRadioStations:searchText completionHandler:^(NSArray<RadioStationDisplay *> * _Nonnull radioStations) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -87,6 +85,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     StationTableViewCell *tableCell = (StationTableViewCell *)cell;
     RadioStationDisplay *display = [self.viewModel itemAtIndexPath:indexPath];
+    [display getImage:nil];
     [tableCell setDisplay:display];
     if ([display.stationuuid isEqualToString:currentStationuuid]) {
         selectIndexPath = indexPath;
@@ -113,6 +112,8 @@
     [[RadioPlayer sharedInstance] playURL:display.url withName:display.name withImage:display.image];
     currentStationuuid = display.stationuuid;
     selectIndexPath = indexPath;
+    [self.miniPlayerView setHidden:NO];
+    [miniPlayer setDisplay:display];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {

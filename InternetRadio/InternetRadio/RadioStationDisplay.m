@@ -8,7 +8,7 @@
 #import "RadioStationDisplay.h"
 
 @interface RadioStationDisplay () {
-    NSURLSessionDataTask * downTask;
+    
 }
 
 @end
@@ -28,7 +28,6 @@
             _imageUrl = nil;
         }
         _desc = radioStation.tags;
-        downTask = nil;
     }
         
     return self;
@@ -36,38 +35,38 @@
 
 - (void) getImage: (void (^)(UIImage *))callback {
     if (self.image) {
-        callback(self.image);
+        if(callback) {
+            callback(self.image);
+        }
         return;
     }
     
     if (!self.imageUrl) {
         self->_image = [self deaultImage];
-        callback(self.image);
+        if(callback) {
+            callback(self.image);
+        }
         return;
     }
         
-    downTask = [[NSURLSession sharedSession] dataTaskWithURL:_imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [[[NSURLSession sharedSession] dataTaskWithURL:_imageUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (!data || error) {
             self->_image = [self deaultImage];
-            callback(self->_image);
+            if(callback) {
+                callback(self.image);
+            }
             return;
         }
         
         self->_image = [UIImage imageWithData:data];
-        callback(self->_image);
-    }];
-    [downTask resume];
+        if(callback) {
+            callback(self.image);
+        }
+    }] resume];
 }
 
 - (UIImage *) deaultImage {
     return [UIImage imageNamed:@"radio-default"];
-}
-
-- (void) stopDownTask {
-    if (downTask) {
-        [downTask cancel];
-        downTask = nil;
-    }
 }
 
 //- (void) getImage:(void (^)(UIImage *))callback {
