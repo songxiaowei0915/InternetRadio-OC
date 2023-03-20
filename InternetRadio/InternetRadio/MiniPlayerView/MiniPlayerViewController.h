@@ -22,8 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) playAnim;
 - (void) stopAnim;
-- (void) loading;
-- (void) loadingOver;
 
 @end
 

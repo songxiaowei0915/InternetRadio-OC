@@ -9,7 +9,7 @@
 
 @implementation RadioStation 
 
-- (instancetype) initWithUUID:(NSString *)uuid withName:(NSString *)name withUrl:(NSString *)url withImageUrl:(NSString *)imageUrl withTags:(NSString *)tags withCountry:(NSString *)country withCountryCode:(NSString *)countrycode withLanguage:(NSString *)language withState:(NSString *)state withVotes:(NSInteger)votes {
+- (instancetype) initWithUUID:(NSString *)uuid named:(NSString *)name url:(NSString *)url imageUrl:(NSString *)imageUrl tags:(NSString *)tags country:(NSString *)country countryCode:(NSString *)countrycode language:(NSString *)language state:(NSString *)state votes:(NSInteger)votes {
     self = [super init];
     
     if (self) {

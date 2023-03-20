@@ -29,7 +29,7 @@
         NSString *state = obj[@"state"];
         NSInteger votes = [obj[@"votes"] intValue];
         
-        RadioStation *station = [[RadioStation alloc] initWithUUID:stationuuid withName:name withUrl:url withImageUrl:favicon withTags:tags withCountry:country withCountryCode:countrycode withLanguage:language withState:state withVotes:votes];
+        RadioStation *station = [[RadioStation alloc] initWithUUID:stationuuid named:name url:url imageUrl:favicon tags:tags country:country countryCode:countrycode language:language state:state votes:votes];
         [stations addObject:station];
     }
     

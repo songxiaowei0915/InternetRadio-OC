@@ -39,6 +39,8 @@ typedef NS_ENUM(NSUInteger, RadioPalyerState) {
 - (void) interrupt;
 - (void) resume;
 
+- (void) togglePlayPause;
+
 @end
 
 NS_ASSUME_NONNULL_END

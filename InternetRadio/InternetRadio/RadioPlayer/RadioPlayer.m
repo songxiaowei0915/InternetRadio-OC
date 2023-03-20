@@ -197,6 +197,7 @@ static RadioPlayer *_instance = nil;
             [self pause];
             break;
         case paused:
+        case stopped:
             [self play];
             break;
         default:

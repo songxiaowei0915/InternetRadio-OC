@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434103C629C82E7A00335C08 /* LoadingPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 434103C529C82E7A00335C08 /* LoadingPlayerView.m */; };
 		438F73CF29B7DD7B00ADD0A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73CE29B7DD7B00ADD0A8 /* AppDelegate.m */; };
 		438F73D229B7DD7B00ADD0A8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73D129B7DD7B00ADD0A8 /* SceneDelegate.m */; };
 		438F73D529B7DD7B00ADD0A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73D429B7DD7B00ADD0A8 /* ViewController.m */; };
@@ -32,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		434103C429C82E7A00335C08 /* LoadingPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingPlayerView.h; sourceTree = "<group>"; };
+		434103C529C82E7A00335C08 /* LoadingPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingPlayerView.m; sourceTree = "<group>"; };
 		438F73CA29B7DD7B00ADD0A8 /* InternetRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		438F73CD29B7DD7B00ADD0A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		438F73CE29B7DD7B00ADD0A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 			children = (
 				43E3A6F729C6E3300019C4C5 /* MiniPlayerViewController.h */,
 				43E3A6F829C6E3300019C4C5 /* MiniPlayerViewController.m */,
+				434103C429C82E7A00335C08 /* LoadingPlayerView.h */,
+				434103C529C82E7A00335C08 /* LoadingPlayerView.m */,
 				43E3A6F929C6E3300019C4C5 /* MiniPlayerViewController.xib */,
 			);
 			path = MiniPlayerView;
@@ -269,6 +274,7 @@
 				43E3A6EE29C600C10019C4C5 /* UIViewController+StoryboardInstantiable.m in Sources */,
 				43E3A6DA29C304570019C4C5 /* UIImage+Color.m in Sources */,
 				43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */,
+				434103C629C82E7A00335C08 /* LoadingPlayerView.m in Sources */,
 				43E3A6BC29BDAD940019C4C5 /* RadioStationDisplay.m in Sources */,
 				43E3A6C829BDC8B70019C4C5 /* StationTableViewCell.m in Sources */,
 				43E3A6C529BDB6300019C4C5 /* HomeViewController.m in Sources */,
