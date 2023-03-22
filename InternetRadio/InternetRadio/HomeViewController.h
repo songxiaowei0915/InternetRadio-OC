@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "ViewModel.h"
+#import "HomeViewModel.h"
 #import "RadioPlayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *miniPlayerView;
 
-@property (nonatomic, strong) ViewModel * viewModel;
+@property (nonatomic, strong) HomeViewModel * viewModel;
 
 @end
 

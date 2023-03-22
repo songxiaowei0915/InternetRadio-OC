@@ -1,24 +1,22 @@
 //
-//  StationTableViewCell.h
+//  StationViewCell.h
 //  InternetRadio
 //
-//  Created by 宋小伟 on 2023/3/12.
+//  Created by 宋小伟 on 2023/3/20.
 //
 
 #import <UIKit/UIKit.h>
-#import "RadioStationDisplay.h"
 #import "PlayingAnimatedView.h"
+#import "RadioStationDisplay.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StationTableViewCell : UITableViewCell {
-   
-}
-
+@interface StationViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *homeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet PlayingAnimatedView *statusView;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+
 
 @property (nonatomic, assign) RadioStationDisplay *display;
 

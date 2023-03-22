@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		434103C629C82E7A00335C08 /* LoadingPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 434103C529C82E7A00335C08 /* LoadingPlayerView.m */; };
+		434103CF29C847C300335C08 /* StationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 434103CD29C847C300335C08 /* StationViewCell.m */; };
+		434103D029C847C300335C08 /* StationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434103CE29C847C300335C08 /* StationViewCell.xib */; };
+		434103D329C848C400335C08 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 434103D229C848C400335C08 /* FavoriteViewController.m */; };
+		434103D629C84A7200335C08 /* FavoriteViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 434103D529C84A7200335C08 /* FavoriteViewModel.m */; };
 		438F73CF29B7DD7B00ADD0A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73CE29B7DD7B00ADD0A8 /* AppDelegate.m */; };
 		438F73D229B7DD7B00ADD0A8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73D129B7DD7B00ADD0A8 /* SceneDelegate.m */; };
 		438F73D529B7DD7B00ADD0A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73D429B7DD7B00ADD0A8 /* ViewController.m */; };
@@ -17,10 +21,9 @@
 		438F73E029B7DD7C00ADD0A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 438F73DF29B7DD7C00ADD0A8 /* main.m */; };
 		43E3A6B329BDA3EB0019C4C5 /* RadioStationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6B229BDA3EB0019C4C5 /* RadioStationFetcher.m */; };
 		43E3A6B629BDAAA60019C4C5 /* RadioStationParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6B529BDAAA60019C4C5 /* RadioStationParser.m */; };
-		43E3A6B929BDAD5E0019C4C5 /* ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6B829BDAD5E0019C4C5 /* ViewModel.m */; };
+		43E3A6B929BDAD5E0019C4C5 /* HomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6B829BDAD5E0019C4C5 /* HomeViewModel.m */; };
 		43E3A6BC29BDAD940019C4C5 /* RadioStationDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6BB29BDAD940019C4C5 /* RadioStationDisplay.m */; };
 		43E3A6C529BDB6300019C4C5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6C429BDB6300019C4C5 /* HomeViewController.m */; };
-		43E3A6C829BDC8B70019C4C5 /* StationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6C729BDC8B70019C4C5 /* StationTableViewCell.m */; };
 		43E3A6CB29C01F170019C4C5 /* RadioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6CA29C01F170019C4C5 /* RadioPlayer.m */; };
 		43E3A6D429C1B26D0019C4C5 /* MessageDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D329C1B26D0019C4C5 /* MessageDefine.m */; };
 		43E3A6D729C1CAC90019C4C5 /* PlayingAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E3A6D629C1CAC90019C4C5 /* PlayingAnimatedView.m */; };
@@ -35,6 +38,13 @@
 /* Begin PBXFileReference section */
 		434103C429C82E7A00335C08 /* LoadingPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingPlayerView.h; sourceTree = "<group>"; };
 		434103C529C82E7A00335C08 /* LoadingPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingPlayerView.m; sourceTree = "<group>"; };
+		434103CC29C847C300335C08 /* StationViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationViewCell.h; sourceTree = "<group>"; };
+		434103CD29C847C300335C08 /* StationViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationViewCell.m; sourceTree = "<group>"; };
+		434103CE29C847C300335C08 /* StationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StationViewCell.xib; sourceTree = "<group>"; };
+		434103D129C848C400335C08 /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		434103D229C848C400335C08 /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
+		434103D429C84A7200335C08 /* FavoriteViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewModel.h; sourceTree = "<group>"; };
+		434103D529C84A7200335C08 /* FavoriteViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewModel.m; sourceTree = "<group>"; };
 		438F73CA29B7DD7B00ADD0A8 /* InternetRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		438F73CD29B7DD7B00ADD0A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		438F73CE29B7DD7B00ADD0A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,14 +61,12 @@
 		43E3A6B229BDA3EB0019C4C5 /* RadioStationFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStationFetcher.m; sourceTree = "<group>"; };
 		43E3A6B429BDAAA60019C4C5 /* RadioStationParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioStationParser.h; sourceTree = "<group>"; };
 		43E3A6B529BDAAA60019C4C5 /* RadioStationParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStationParser.m; sourceTree = "<group>"; };
-		43E3A6B729BDAD5E0019C4C5 /* ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModel.h; sourceTree = "<group>"; };
-		43E3A6B829BDAD5E0019C4C5 /* ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModel.m; sourceTree = "<group>"; };
+		43E3A6B729BDAD5E0019C4C5 /* HomeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewModel.h; sourceTree = "<group>"; };
+		43E3A6B829BDAD5E0019C4C5 /* HomeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewModel.m; sourceTree = "<group>"; };
 		43E3A6BA29BDAD940019C4C5 /* RadioStationDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioStationDisplay.h; sourceTree = "<group>"; };
 		43E3A6BB29BDAD940019C4C5 /* RadioStationDisplay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStationDisplay.m; sourceTree = "<group>"; };
 		43E3A6C329BDB6300019C4C5 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		43E3A6C429BDB6300019C4C5 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		43E3A6C629BDC8B70019C4C5 /* StationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationTableViewCell.h; sourceTree = "<group>"; };
-		43E3A6C729BDC8B70019C4C5 /* StationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationTableViewCell.m; sourceTree = "<group>"; };
 		43E3A6C929C01F170019C4C5 /* RadioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioPlayer.h; sourceTree = "<group>"; };
 		43E3A6CA29C01F170019C4C5 /* RadioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioPlayer.m; sourceTree = "<group>"; };
 		43E3A6D229C1B26D0019C4C5 /* MessageDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDefine.h; sourceTree = "<group>"; };
@@ -112,6 +120,16 @@
 			path = RadioPlayer;
 			sourceTree = "<group>";
 		};
+		434103D729CAE93200335C08 /* StationViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				434103CC29C847C300335C08 /* StationViewCell.h */,
+				434103CD29C847C300335C08 /* StationViewCell.m */,
+				434103CE29C847C300335C08 /* StationViewCell.xib */,
+			);
+			path = StationViewCell;
+			sourceTree = "<group>";
+		};
 		438F73C129B7DD7B00ADD0A8 = {
 			isa = PBXGroup;
 			children = (
@@ -137,16 +155,19 @@
 				438F73D129B7DD7B00ADD0A8 /* SceneDelegate.m */,
 				438F73D329B7DD7B00ADD0A8 /* ViewController.h */,
 				438F73D429B7DD7B00ADD0A8 /* ViewController.m */,
-				43E3A6C629BDC8B70019C4C5 /* StationTableViewCell.h */,
-				43E3A6C729BDC8B70019C4C5 /* StationTableViewCell.m */,
 				43E3A6C329BDB6300019C4C5 /* HomeViewController.h */,
 				43E3A6C429BDB6300019C4C5 /* HomeViewController.m */,
-				43E3A6B729BDAD5E0019C4C5 /* ViewModel.h */,
-				43E3A6B829BDAD5E0019C4C5 /* ViewModel.m */,
+				43E3A6B729BDAD5E0019C4C5 /* HomeViewModel.h */,
+				43E3A6B829BDAD5E0019C4C5 /* HomeViewModel.m */,
 				43E3A6BA29BDAD940019C4C5 /* RadioStationDisplay.h */,
 				43E3A6BB29BDAD940019C4C5 /* RadioStationDisplay.m */,
 				43E3A6D529C1CAC90019C4C5 /* PlayingAnimatedView.h */,
 				43E3A6D629C1CAC90019C4C5 /* PlayingAnimatedView.m */,
+				434103D129C848C400335C08 /* FavoriteViewController.h */,
+				434103D229C848C400335C08 /* FavoriteViewController.m */,
+				434103D429C84A7200335C08 /* FavoriteViewModel.h */,
+				434103D529C84A7200335C08 /* FavoriteViewModel.m */,
+				434103D729CAE93200335C08 /* StationViewCell */,
 				434103C329C71DF400335C08 /* RadioPlayer */,
 				434103C229C71DD100335C08 /* MiniPlayerView */,
 				43E3A6DB29C3059B0019C4C5 /* Extensions */,
@@ -253,6 +274,7 @@
 			files = (
 				438F73DD29B7DD7C00ADD0A8 /* LaunchScreen.storyboard in Resources */,
 				43E3A6FB29C6E3300019C4C5 /* MiniPlayerViewController.xib in Resources */,
+				434103D029C847C300335C08 /* StationViewCell.xib in Resources */,
 				438F73DA29B7DD7C00ADD0A8 /* Assets.xcassets in Resources */,
 				438F73D829B7DD7B00ADD0A8 /* Main.storyboard in Resources */,
 			);
@@ -265,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434103D329C848C400335C08 /* FavoriteViewController.m in Sources */,
 				43E3A6D729C1CAC90019C4C5 /* PlayingAnimatedView.m in Sources */,
 				438F73D529B7DD7B00ADD0A8 /* ViewController.m in Sources */,
 				438F73CF29B7DD7B00ADD0A8 /* AppDelegate.m in Sources */,
@@ -274,14 +297,15 @@
 				43E3A6EE29C600C10019C4C5 /* UIViewController+StoryboardInstantiable.m in Sources */,
 				43E3A6DA29C304570019C4C5 /* UIImage+Color.m in Sources */,
 				43F8C59029B87B87008DEF78 /* NetworkManager.m in Sources */,
+				434103D629C84A7200335C08 /* FavoriteViewModel.m in Sources */,
 				434103C629C82E7A00335C08 /* LoadingPlayerView.m in Sources */,
 				43E3A6BC29BDAD940019C4C5 /* RadioStationDisplay.m in Sources */,
-				43E3A6C829BDC8B70019C4C5 /* StationTableViewCell.m in Sources */,
 				43E3A6C529BDB6300019C4C5 /* HomeViewController.m in Sources */,
 				43E3A6CB29C01F170019C4C5 /* RadioPlayer.m in Sources */,
 				43E3A6B629BDAAA60019C4C5 /* RadioStationParser.m in Sources */,
-				43E3A6B929BDAD5E0019C4C5 /* ViewModel.m in Sources */,
+				43E3A6B929BDAD5E0019C4C5 /* HomeViewModel.m in Sources */,
 				43F8C59329B8A099008DEF78 /* RadioStation.m in Sources */,
+				434103CF29C847C300335C08 /* StationViewCell.m in Sources */,
 				43E3A6D429C1B26D0019C4C5 /* MessageDefine.m in Sources */,
 				438F73D229B7DD7B00ADD0A8 /* SceneDelegate.m in Sources */,
 			);

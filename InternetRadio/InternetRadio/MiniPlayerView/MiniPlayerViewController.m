@@ -29,7 +29,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(radioBuffering) name:MessageDefine.RADIOPLAYER_BUFFERING object:nil];
     
     [self.statusView setImagesColor:UIColor.whiteColor];
-    [self.statusView setupAnimationImages];
     [self.statusView setAnimationDuration:1];
     
     [self setupPlayerView];

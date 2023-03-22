@@ -1,24 +1,24 @@
 //
-//  StationTableViewCell.m
+//  StationViewCell.m
 //  InternetRadio
 //
-//  Created by 宋小伟 on 2023/3/12.
+//  Created by 宋小伟 on 2023/3/20.
 //
 
-#import "StationTableViewCell.h"
-#import <Foundation/Foundation.h>
+#import "StationViewCell.h"
 
-@interface StationTableViewCell () {
+@interface StationViewCell () {
     NSURLSessionDataTask * downTask;
 }
 
 @end
 
-@implementation StationTableViewCell
+@implementation StationViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.statusView setImagesColor:UIColor.blackColor];
     [self.statusView setAnimationDuration:1];
 }
 
@@ -42,7 +42,7 @@
     } else {
         [self.homeImageView setImage:display.deaultImage];
         if (_display.imageUrl) {
-            __weak StationTableViewCell *cell = self;
+            __weak StationViewCell *cell = self;
             [self getImage:^(UIImage *image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [cell.homeImageView setImage:image];
@@ -72,3 +72,4 @@
 }
 
 @end
+

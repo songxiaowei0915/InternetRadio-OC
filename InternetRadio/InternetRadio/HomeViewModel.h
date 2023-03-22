@@ -1,5 +1,5 @@
 //
-//  ViewModel.h
+//  HomeViewModel.h
 //  InternetRadio
 //
 //  Created by 宋小伟 on 2023/3/12.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ViewModel : NSObject
+@interface HomeViewModel : NSObject
 
 @property (nonatomic, readonly)  NSArray<RadioStation *> * radioStations;
 @property (nonatomic, strong) id<RadioStationFetcherProtocol> fetcher;

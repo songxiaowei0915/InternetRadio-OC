@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlayingAnimatedView : UIImageView
 
 - (void) setImagesColor: (UIColor *)color;
-- (void) setupAnimationImages;
 
 @end
 

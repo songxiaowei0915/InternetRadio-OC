@@ -20,7 +20,6 @@
     self = [super initWithCoder:coder];
     
     if (self) {
-        [self setImagesColor:UIColor.blackColor];
         [self setupAnimationImages];
     }
     
@@ -33,6 +32,7 @@
 
 - (void) setImagesColor:(UIColor *)color {
     imageColor = color;
+    [self setupAnimationImages];
 }
 
 -(NSArray<UIImage *> *) animFrames {

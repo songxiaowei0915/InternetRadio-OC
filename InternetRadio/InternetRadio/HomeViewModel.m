@@ -1,15 +1,15 @@
 //
-//  ViewModel.m
+//  HomeViewModel.m
 //  InternetRadio
 //
 //  Created by 宋小伟 on 2023/3/12.
 //
 
-#import "ViewModel.h"
+#import "HomeViewModel.h"
 #import "RadioStationFetcher.h"
 #import "RadioStationParser.h"
 
-@implementation ViewModel
+@implementation HomeViewModel
 
 - (instancetype) init {
     self = [super init];

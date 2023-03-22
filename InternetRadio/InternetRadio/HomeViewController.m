@@ -6,7 +6,7 @@
 //
 
 #import "HomeViewController.h"
-#import "StationTableViewCell.h"
+#import "StationViewCell.h"
 #import "MiniPlayerViewController.h"
 #import "UIViewController+StoryboardInstantiable.h"
 
@@ -21,20 +21,11 @@
 
 @implementation HomeViewController
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    
-    if (self) {
-        self.viewModel = [[ViewModel alloc] init];
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.viewModel = [[HomeViewModel alloc] init];
+    [self.tableView registerNib:[UINib nibWithNibName:@"StationViewCell" bundle:nil] forCellReuseIdentifier:@"StationViewCell"];
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
     [self.searchBar setDelegate:self];
@@ -83,7 +74,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    StationTableViewCell *tableCell = (StationTableViewCell *)cell;
+    StationViewCell *tableCell = (StationViewCell *)cell;
     RadioStationDisplay *display = [self.viewModel itemAtIndexPath:indexPath];
     [display getImage:nil];
     [tableCell setDisplay:display];
@@ -96,7 +87,7 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    StationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StationTableViewCell"];
+    StationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StationViewCell" forIndexPath:indexPath];
     return cell;
 }
 
@@ -107,7 +98,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    StationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    StationViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     RadioStationDisplay *display = cell.display;
     [[RadioPlayer sharedInstance] playURL:display.url withName:display.name withImage:display.image];
     currentStationuuid = display.stationuuid;
@@ -117,7 +108,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    StationTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    StationViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell stopAnim];
 }
 
@@ -125,7 +116,7 @@
     if (!selectIndexPath) {
         return;
     }
-    StationTableViewCell *selectCell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
+    StationViewCell *selectCell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
     RadioStationDisplay *display = selectCell.display;
     if (![display.stationuuid isEqualToString:currentStationuuid]) {
         return;
