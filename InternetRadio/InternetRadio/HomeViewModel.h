@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeViewModel : NSObject
 
-@property (nonatomic, readonly)  NSArray<RadioStation *> * radioStations;
+@property (nonatomic, readonly)  NSArray<RadioStationDisplay *> * radioStationDisplays;
 @property (nonatomic, strong) id<RadioStationFetcherProtocol> fetcher;
 @property (nonatomic, strong) NSArray<RadioStationDisplay *> *items;
 
-- (void)getRadioStationsWithSuccess:(void (^)(NSArray<RadioStationDisplay*> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
+- (void)getHomeRadioStationsWithSuccess:(void (^)(NSArray<RadioStationDisplay*> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
 - (void)searchRadioStations:(NSString *)searchText completionHandler:(void (^)(NSArray<RadioStationDisplay*> *radioStations))successCompletion;
 
 - (NSInteger) numberOfItems;

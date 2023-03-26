@@ -92,7 +92,7 @@ static RadioPlayer *_instance = nil;
 
 - (void) setState:(RadioPalyerState)state {
     _state = state;
-    if ([self.delegate respondsToSelector:@selector(readipPlayerStateChange:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(readipPlayerStateChange:)]) {
         [self.delegate readipPlayerStateChange:_state];
     }
     [self postStateMessage];

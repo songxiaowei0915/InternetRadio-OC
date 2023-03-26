@@ -6,6 +6,7 @@
 //
 
 #import "RadioStationParser.h"
+#import "DataManager.h"
 
 @implementation RadioStationParser
 
@@ -30,6 +31,17 @@
         NSInteger votes = [obj[@"votes"] intValue];
         
         RadioStation *station = [[RadioStation alloc] initWithUUID:stationuuid named:name url:url imageUrl:favicon tags:tags country:country countryCode:countrycode language:language state:state votes:votes];
+        [stations addObject:station];
+    }
+    
+    successCompletion(stations);
+}
+
+- (void)parseFavoriteStations:(NSArray<NSString *> *)dataArray withSuccess:(void (^)(NSArray<RadioStation *> * _Nonnull))successCompletion {
+    DataManager *manager = [DataManager sharedInstance];
+    NSMutableArray<RadioStation *>* stations = [[NSMutableArray alloc] init];
+    for (NSString *uuid in dataArray) {
+        RadioStation *station = [manager.radioStationsDic valueForKey:uuid];
         [stations addObject:station];
     }
     

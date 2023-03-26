@@ -11,7 +11,6 @@
 #import "UIViewController+StoryboardInstantiable.h"
 
 @interface HomeViewController () {
-    NSString *currentStationuuid;
     NSIndexPath *selectIndexPath;
     NSTimer *delayPlay;
     MiniPlayerViewController *miniPlayer;
@@ -37,7 +36,7 @@
 
 - (void) getData {
     __weak HomeViewController *weakSelf = self;
-    [self.viewModel getRadioStationsWithSuccess:^(NSArray<RadioStationDisplay *> * _Nonnull radioStations) {
+    [self.viewModel getHomeRadioStationsWithSuccess:^(NSArray<RadioStationDisplay *> * _Nonnull radioStations) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView reloadData];
         });
@@ -78,7 +77,7 @@
     RadioStationDisplay *display = [self.viewModel itemAtIndexPath:indexPath];
     [display getImage:nil];
     [tableCell setDisplay:display];
-    if ([display.stationuuid isEqualToString:currentStationuuid]) {
+    if (display.isPlaying) {
         selectIndexPath = indexPath;
         [tableCell playAnim];
     } else {
@@ -100,8 +99,8 @@
     
     StationViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     RadioStationDisplay *display = cell.display;
+    display.isSelected = YES;
     [[RadioPlayer sharedInstance] playURL:display.url withName:display.name withImage:display.image];
-    currentStationuuid = display.stationuuid;
     selectIndexPath = indexPath;
     [self.miniPlayerView setHidden:NO];
     [miniPlayer setDisplay:display];
@@ -109,6 +108,9 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     StationViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    RadioStationDisplay *display = cell.display;
+    display.isPlaying = NO;
+    display.isSelected = NO;
     [cell stopAnim];
 }
 
@@ -116,9 +118,10 @@
     if (!selectIndexPath) {
         return;
     }
+    
     StationViewCell *selectCell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
     RadioStationDisplay *display = selectCell.display;
-    if (![display.stationuuid isEqualToString:currentStationuuid]) {
+    if (!display.isSelected) {
         return;
     }
     if (delayPlay) {
@@ -129,11 +132,13 @@
             case playing:
                 if (selectCell) {
                     [selectCell playAnim];
+                    display.isPlaying = YES;
                 }
                 break;
             default:
                 if (selectCell) {
                     [selectCell stopAnim];
+                    display.isPlaying = NO;
                 }
                 break;
         }

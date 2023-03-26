@@ -30,11 +30,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)parseRadioStations:(NSArray *)jsonArray withSuccess:(void (^)(NSArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
 
+- (void)parseFavoriteStations:(NSArray<NSString *> *)dataArray withSuccess:(void (^)(NSArray<RadioStation *> *radioStations))successCompletion;
+
 @end
 
 @protocol RadioStationFetcherProtocol <NSObject>
 
 - (void)fetchRadioStationsWithSuccess:(void (^)(NSArray<RadioStation *> *radioStations))successCompletion error:(void (^)(NSError *error))errorCompletion;
+
+- (void)fetchFavoriteStationsWithSuccess:(void (^)(NSArray<RadioStation *> *radioStations))successCompletion;
 
 @end
 

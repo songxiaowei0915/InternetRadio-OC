@@ -9,6 +9,7 @@
 #import "MessageDefine.h"
 #import "LoadingPlayerView.h"
 #import "RadioPlayer.h"
+#import "UIButton+Completion.h"
 
 @interface MiniPlayerViewController () {
     UIView *playView;
@@ -98,11 +99,20 @@
     
     [self.nameLabel setText:display.name];
     [self.descLabel setText:display.desc];
+    
+    [self updateFavoriteState];
 }
 
 - (void) playAnim {
     [self.statusView setHidden:NO];
     [self.statusView startAnimating];
+}
+
+- (IBAction)favoriteClick:(UIButton *)sender {
+    [self.favoriteBtn springAnimate:nil];
+    [self.display toggleFavorite];
+    [self updateFavoriteState];
+    
 }
 
 - (void) stopAnim {
@@ -142,5 +152,11 @@
     [pauseView setHidden:YES];
 }
 
+- (void) updateFavoriteState {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *imageFilled = self.display.isFavorite ? [UIImage imageNamed:@"btn-favoriteFill"] : [UIImage imageNamed:@"btn-favorite"];
+        [self.favoriteBtn setImage:imageFilled forState:UIControlStateNormal];
+    });
+}
 
 @end

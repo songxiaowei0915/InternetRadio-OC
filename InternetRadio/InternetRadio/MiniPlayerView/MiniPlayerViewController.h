@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIStackView *playStackView;
 
 @property (nonatomic, assign) RadioStationDisplay *display;
+- (IBAction)favoriteClick:(UIButton *)sender;
 
 - (void) playAnim;
 - (void) stopAnim;

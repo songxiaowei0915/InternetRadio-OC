@@ -72,38 +72,6 @@
             </objects>
             <point key="canvasLocation" x="-1060.3053435114502" y="-385.21126760563385"/>
         </scene>
-        <!--Favorite-->
-        <scene sceneID="rbF-22-vaL">
-            <objects>
-                <viewController id="ZhR-yG-Kgs" userLabel="Favorite" customClass="FavoriteViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Gea-yW-GHh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2H5-sb-HDy">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="NpT-qz-M0c"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="2H5-sb-HDy" firstAttribute="top" secondItem="NpT-qz-M0c" secondAttribute="top" id="YfA-xJ-M6c"/>
-                            <constraint firstItem="2H5-sb-HDy" firstAttribute="leading" secondItem="NpT-qz-M0c" secondAttribute="leading" id="eR7-y0-qQP"/>
-                            <constraint firstItem="2H5-sb-HDy" firstAttribute="trailing" secondItem="NpT-qz-M0c" secondAttribute="trailing" id="jbK-c8-iEB"/>
-                            <constraint firstItem="2H5-sb-HDy" firstAttribute="bottom" secondItem="NpT-qz-M0c" secondAttribute="bottom" id="mld-ZT-j2o"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" selectedImage="star.fill" id="ey4-ad-JGa" userLabel="Favorite"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="tableView" destination="2H5-sb-HDy" id="IA1-2t-ljt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r5w-Zq-mHI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-341.2213740458015" y="-385.21126760563385"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="soO-SS-7z3">
             <objects>
@@ -115,7 +83,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="mAC-1F-L7u" kind="relationship" relationship="viewControllers" id="XvK-C9-VQ5"/>
-                        <segue destination="ZhR-yG-Kgs" kind="relationship" relationship="viewControllers" id="LBs-Ew-m8L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCp-cI-pyc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -125,7 +92,6 @@
     </scenes>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

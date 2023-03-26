@@ -22,58 +22,61 @@
     return self;
 }
 
-- (void) getRadioStationsWithSuccess:(void (^)(NSArray<RadioStationDisplay *> * _Nonnull))successCompletion error:(void (^)(NSError * _Nonnull))errorCompletion {
-    if (self.radioStations) {
+- (void) getHomeRadioStationsWithSuccess:(void (^)(NSArray<RadioStationDisplay *> * _Nonnull))successCompletion error:(void (^)(NSError * _Nonnull))errorCompletion {
+    if (self.radioStationDisplays) {
         NSString * countryCode = [[NSLocale currentLocale] countryCode];
-        NSArray *stations = [self getDataByCounryCode:countryCode];
-        NSArray *items = [self organizationalItems:stations];
+        NSArray *items = [self getDataByCounryCode:countryCode];
         [self setItems:items];
         successCompletion(items);
     } else {
         [self.fetcher fetchRadioStationsWithSuccess:^(NSArray<RadioStation *> * _Nonnull radioStations) {
-            self->_radioStations = radioStations;
+            self->_radioStationDisplays = [self setDisplays:radioStations];
             NSString * countryCode = [[NSLocale currentLocale] countryCode];
-            NSArray *stations = [self getDataByCounryCode:countryCode];
-            NSArray *items = [self organizationalItems:stations];
+            NSArray *items = [self getDataByCounryCode:countryCode];
             [self setItems:items];
             successCompletion(items);
         } error:errorCompletion];
     }
 }
 
-- (NSArray *) getDataByCounryCode: (NSString *)countryCode {
-    NSMutableArray *stations = [[NSMutableArray alloc] init];
-    for (RadioStation *station in self.radioStations) {
+- (NSArray *) setDisplays:(NSArray<RadioStation *> *) radioStations {
+    NSMutableArray *displays = [[NSMutableArray alloc] init];
+    for (RadioStation *station in radioStations) {
+        [displays addObject:[[RadioStationDisplay alloc] initWithRaioStation:station]];
+    }
+    return displays;
+}
+
+- (NSArray<RadioStationDisplay *> *) getDataByCounryCode: (NSString *)countryCode {
+    NSMutableArray *displays = [[NSMutableArray alloc] init];
+    for (RadioStationDisplay *display in self.radioStationDisplays) {
+        RadioStation *station = display.station;
         if ([station.countrycode isEqualToString:countryCode]) {
-            [stations addObject:station];
+            [displays addObject:display];
         }
     }
     
-    return stations;
+    return [self sortlArray:displays];
 }
 
 - (void) searchRadioStations:(NSString *)searchText completionHandler:(void (^)(NSArray<RadioStationDisplay *> * _Nonnull))successCompletion {
-    NSMutableArray *stations = [[NSMutableArray alloc] init];
-    for (RadioStation *station in self.radioStations) {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for (RadioStationDisplay *display in self.radioStationDisplays) {
+        RadioStation *station = display.station;
         if ([station.name containsString:searchText] || [station.tags containsString:searchText] || [station.country containsString:searchText] || [station.countrycode isEqualToString:searchText] || [station.language containsString:searchText] || [station.state containsString:searchText]) {
-            [stations addObject:station];
+            [items addObject:display];
         }
     }
-    NSArray *items = [self organizationalItems:stations];
     [self setItems:items];
     successCompletion(items);
 }
 
-- (NSArray *)organizationalItems:(NSArray<RadioStation *> *) radioStations {
-    NSArray *sortedArray = [radioStations sortedArrayWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(RadioStation *obj1, RadioStation *obj2) {
-            return obj1.votes < obj2.votes;
+- (NSArray *)sortlArray: (NSArray<RadioStationDisplay *> *) displays {
+    NSArray *sortedArray = [displays sortedArrayWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(RadioStationDisplay *obj1, RadioStationDisplay *obj2) {
+            return obj1.station.votes < obj2.station.votes;
         }];
     
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-    for (RadioStation *station in sortedArray) {
-        [items addObject:[[RadioStationDisplay alloc] initWithRaioStation:station]];
-    }
-    return items;
+    return sortedArray;
 }
 
 - (NSInteger) numberOfItems {

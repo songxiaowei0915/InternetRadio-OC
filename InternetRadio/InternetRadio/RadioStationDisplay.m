@@ -19,6 +19,7 @@
     self = [super init];
     
     if (self) {
+        _station = radioStation;
         _stationuuid = radioStation.stationuuid;
         _name = radioStation.name;
         _url = [NSURL URLWithString:radioStation.url];
@@ -31,6 +32,10 @@
     }
         
     return self;
+}
+
+- (void) toggleFavorite {
+    _isFavorite = !_isFavorite;
 }
 
 //- (void) getImage: (void (^)(UIImage *))callback {
